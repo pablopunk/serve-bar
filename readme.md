@@ -3,9 +3,8 @@
 
 <p align="center">
   <i>Share folders in your network using <a href="https://github.com/zeit/serve">serve</a></i>
+  <img src="https://github.com/pablopunk/art/raw/master/serve-bar/screen.gif" />
 </p>
-
-![ss](https://github.com/pablopunk/art/raw/master/serve-bar/screen.gif)
 
 ## Install
 
