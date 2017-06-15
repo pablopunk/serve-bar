@@ -19,7 +19,8 @@ npm start
 
 Feel free to open an _issue_ or a _PR_.
 
-* [Contributing instructions](CONTRIBUTING.md)aasd
+* [Contributing instructions](CONTRIBUTING.md)
+* [Code of conduct](CODE_OF_CONDUCT.md)
 
 | ![me](https://www.gravatar.com/avatar/fa50aeff0ddd6e63273a068b04353d9d?s=100) |
 | ----------------------------------------------------------------------------- |
