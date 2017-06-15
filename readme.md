@@ -19,7 +19,7 @@ npm start
 
 Feel free to open an _issue_ or a _PR_.
 
-## Author
+* [Contributing instructions](CONTRIBUTING.md)aasd
 
 | ![me](https://www.gravatar.com/avatar/fa50aeff0ddd6e63273a068b04353d9d?s=100) |
 | ----------------------------------------------------------------------------- |
