@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "node-notifier": "^5.1.2",
-    "serve": "^5.2.2"
+    "serve": "^6.0.0"
   }
 }
