@@ -6,7 +6,7 @@ const handler = require('serve-handler')
 const notifier = require('node-notifier')
 const portfinder = require('portfinder')
 
-const iconPath = path.join(__dirname, '..', 'build/iconTemplate.png')
+const iconPath = path.join(__dirname, '..', 'assets/iconTemplate.png')
 
 let serversSubMenu = []
 

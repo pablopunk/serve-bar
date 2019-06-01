@@ -59,16 +59,21 @@
   "scripts": {
     "start": "electron .",
     "dist": "npm run png2icns && build",
-    "svg-to-png": "svgpng build/icon.svg dist/icon.png -w 512 -h 512",
-    "png2icns": "npm run svg-to-png && png2icns dist/icon.png -s 16,32,63,128,256 -o build/icon.icns"
+    "svg-to-png": "svgpng assets/icon.svg dist/icon.png -w 512 -h 512",
+    "png2icns": "npm run svg-to-png && png2icns dist/icon.png -s 16,32,63,128,256 -o assets/icon.icns"
   },
   "build": {
     "appId": "com.pablopunk.serve-bar",
-    "files": [
-      "**/*"
-    ],
+    "files": ["**/*", "assets/*.png"],
+    "directories": {
+      "buildResources": "assets"
+    },
     "mac": {
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.utilities",
+      "icon": "assets/icon.icns",
+      "target": [
+        "zip"
+      ]
     },
     "asar": false
   }
