@@ -1,4 +1,5 @@
 const { promises: fs } = require('fs')
+const os = require('os')
 const path = require('path')
 const http = require('http')
 const {app, clipboard, shell, Menu, Tray} = require('electron')
@@ -9,6 +10,23 @@ const portfinder = require('portfinder')
 const iconPath = path.join(__dirname, '..', 'assets/iconTemplate.png')
 
 let serversSubMenu = []
+
+const getNetworkIp = () => {
+  const ifaces = os.networkInterfaces()
+  let ip = 'localhost'
+
+  for (let i in ifaces) {
+    const externalIpv4s = ifaces[i].filter(_ => !_.internal && _.family === 'IPv4')
+    if (externalIpv4s.length > 0) {
+      ip = externalIpv4s[0].address
+      break
+    }
+  }
+
+  return ip
+}
+
+const IP = getNetworkIp()
 
 const getLabelForServer = (pathname, port) =>
   `Stop sharing ${pathname} at port ${port}`
@@ -101,7 +119,7 @@ const newServerEvent = async pathname => {
   const openPort = await portfinder.getPortPromise()
 
   server.listen(openPort, () => {
-    const sharedUrl = `http://localhost:${openPort}/`
+    const sharedUrl = `http://${IP}:${openPort}/`
     clipboard.writeText(sharedUrl)
     shell.openExternal(sharedUrl)
   })
