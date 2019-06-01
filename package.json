@@ -1,5 +1,6 @@
 {
   "name": "serve-bar",
+  "productName": "Serve Bar",
   "description": "Drag & Drop to share files/folders in your network",
   "version": "1.0.0",
   "author": "Pablo Varela <pablovarela182@gmail.com>",
