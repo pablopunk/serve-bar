@@ -15,6 +15,8 @@
 
 Download the latest release from [here](https://github.com/pablopunk/serve-bar/releases)
 
+It will only work on macOS as the drag-and-drop feature doesn't work on Linux and Windows.
+
 ## Build
 
 If you just wanna change the code and run the app:
