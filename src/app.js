@@ -1,7 +1,8 @@
 const path = require('path')
-const {app, clipboard, shell, Menu, Tray} = require('electron')
+const { app, clipboard, shell, Menu, Tray } = require('electron')
 const notifier = require('node-notifier')
-const {createServer} = require('./server')
+const { createServer } = require('./server')
+const settings = require('./settings')
 
 const iconPath = path.join(__dirname, '..', 'assets/iconTemplate.png')
 
@@ -14,8 +15,8 @@ const getMenuItemForServer = (server, pathname, port) => ({
   pathname,
   label: getLabelForServer(pathname, port),
   type: 'normal',
-  click() {
-    server.close();
+  click () {
+    server.close()
     removeServerFromMenu(pathname)
   }
 })
@@ -24,6 +25,22 @@ const getMenu = serversSubMenu => Menu.buildFromTemplate([
   {
     label: 'Servers',
     submenu: serversSubMenu
+  },
+  {
+    label: 'Open in browser',
+    type: 'checkbox',
+    checked: settings.get('openInBrowser'),
+    click () {
+      settings.set('openInBrowser', !settings.get('openInBrowser'))
+    }
+  },
+  {
+    label: 'Copy to clipboard',
+    type: 'checkbox',
+    checked: settings.get('copyToClipboard'),
+    click () {
+      settings.set('copyToClipboard', !settings.get('copyToClipboard'))
+    }
   },
   {
     label: 'View on Github',
@@ -57,7 +74,7 @@ const reloadMenu = () => tray.setContextMenu(getMenu(serversSubMenu))
 
 const notifyServerSuccess = pathname => {
   notifier.notify({
-    title: 'On browser and clipboard!',
+    title: 'Shared successfully!',
     message: `Now you are sharing "${path.basename(pathname)}"`,
     wait: false,
     icon: path.join(__dirname, '..', 'assets', 'icon.png')
@@ -73,7 +90,6 @@ const notifyServerAlreadyExists = pathname => {
   })
 }
 
-
 const newServerEvent = pathname => {
   if (serverExistsInMenu(pathname)) {
     notifyServerAlreadyExists(pathname)
@@ -82,8 +98,12 @@ const newServerEvent = pathname => {
 
   createServer(pathname, (server, ip, port) => {
     const sharedUrl = `http://${ip}:${port}/`
-    clipboard.writeText(sharedUrl)
-    shell.openExternal(sharedUrl)
+    if (settings.get('copyToClipboard')) {
+      clipboard.writeText(sharedUrl)
+    }
+    if (settings.get('openInBrowser')) {
+      shell.openExternal(sharedUrl)
+    }
     addServerToMenu(server, pathname, port)
     notifyServerSuccess(pathname)
     reloadMenu()
