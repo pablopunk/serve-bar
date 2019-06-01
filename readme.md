@@ -13,7 +13,7 @@
 
 ## Download
 
-Download the latest release from [here](https://github.com/pablopunk/serve-bar/releases)
+[▼ Download the latest release](https://github.com/pablopunk/serve-bar/releases).
 
 It will only work on macOS as the drag-and-drop feature doesn't work on Linux and Windows.
 
