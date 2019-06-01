@@ -60,8 +60,8 @@
   "scripts": {
     "start": "electron .",
     "dist": "npm run png2icns && build",
-    "svg-to-png": "svgpng assets/icon.svg dist/icon.png -w 512 -h 512",
-    "png2icns": "npm run svg-to-png && png2icns dist/icon.png -s 16,32,63,128,256 -o assets/icon.icns"
+    "svg-to-png": "svgpng assets/icon.svg assets/icon.png -w 512 -h 512",
+    "png2icns": "npm run svg-to-png && png2icns assets/icon.png -s 16,32,63,128,256 -o assets/icon.icns"
   },
   "build": {
     "appId": "com.pablopunk.serve-bar",

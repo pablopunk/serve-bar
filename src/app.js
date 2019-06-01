@@ -59,7 +59,8 @@ const notifyServerSuccess = pathname => {
   notifier.notify({
     title: 'On browser and clipboard!',
     message: `Now you are sharing "${path.basename(pathname)}"`,
-    wait: false
+    wait: false,
+    icon: path.join(__dirname, '..', 'assets', 'icon.png')
   })
 }
 
@@ -67,7 +68,8 @@ const notifyServerAlreadyExists = pathname => {
   notifier.notify({
     title: 'Duplicate server!',
     message: `You are already sharing this folder "${path.basename(pathname)}"`,
-    wait: false
+    wait: false,
+    icon: path.join(__dirname, '..', 'assets', 'icon.png')
   })
 }
 
