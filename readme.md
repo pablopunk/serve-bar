@@ -28,6 +28,8 @@ If you want to make the production build:
 npm run dist
 ```
 
+If you want to make changes to the icon, just modify `assets/icon.svg` and then generate the `png` and the `icns` with `npm run dist`.
+
 ## Contribute
 
 Feel free to open an _issue_ or a _PR_.
