@@ -1,11 +1,61 @@
 {
   "name": "serve-bar",
+  "description": "Drag & Drop to share files/folders in your network",
   "version": "1.0.0",
-  "description": "Share folders in your network using serve",
-  "main": "index.js",
+  "author": "Pablo Varela <pablovarela182@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/pablopunk/serve-bar/issues",
+    "email": "pablovarela182@gmail.com"
+  },
+  "contributors": [
+    "Pablo Varela <pablovarela182@gmail.com>"
+  ],
+  "dependencies": {
+    "node-notifier": "^5.4.0",
+    "portfinder": "^1.0.20",
+    "serve-handler": "^6.0.1"
+  },
+  "devDependencies": {
+    "electron": "^5.0.2",
+    "electron-builder": "^20.41.0",
+    "husky": "*",
+    "prettier": "*",
+    "pretty-quick": "*"
+  },
+  "homepage": "https://github.com/pablopunk/serve-bar",
+  "keywords": [
+    "serve-bar",
+    "serve",
+    "topbar",
+    "titlebar",
+    "barman",
+    "share",
+    "files",
+    "statusbar",
+    "bar",
+    "drag",
+    "drop",
+    "mac",
+    "electron"
+  ],
+  "license": "MIT",
+  "main": "src/app.js",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pablopunk/serve-bar"
+  },
   "scripts": {
     "start": "electron .",
-    "test": "standard",
     "dist": "build"
   },
   "build": {
@@ -17,23 +67,5 @@
       "category": "public.app-category.utilities"
     },
     "asar": false
-  },
-  "keywords": [
-    "server",
-    "share",
-    "server",
-    "zeit",
-    "topbar"
-  ],
-  "author": "Pablo Varela",
-  "license": "MIT",
-  "devDependencies": {
-    "electron": "^1.6.11",
-    "electron-builder": "^18.6.2",
-    "standard": "^10.0.2"
-  },
-  "dependencies": {
-    "node-notifier": "^5.1.2",
-    "serve": "^6.0.0"
   }
 }

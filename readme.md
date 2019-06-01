@@ -9,9 +9,11 @@
   <img src="https://github.com/pablopunk/art/raw/master/serve-bar/screen.gif" />
 </p>
 
-## Install
+## Download
 
-Right now [the electron app doesn't work](https://github.com/pablopunk/serve-bar/issues/1), but you can clone this repo and start the app:
+Download the latest release from [here](https://github.com/pablopunk/serve-bar/releases)
+
+## Build
 
 ```js
 npm install
