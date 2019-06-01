@@ -9,6 +9,8 @@
   <img src="https://github.com/pablopunk/art/raw/master/serve-bar/screen.gif" />
 </p>
 
+*Serve Bar* allows you to drag any files or folders to the icon in the topbar and it will create an **http server** for each one of them. It will automatically open the created servers in your browser and also copy the URLs to your clipboard so you can share them easily.
+
 ## Download
 
 Download the latest release from [here](https://github.com/pablopunk/serve-bar/releases)
