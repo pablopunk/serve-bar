@@ -24,11 +24,11 @@ It will only work on macOS as the drag-and-drop feature doesn't work on Linux an
 
 ## Performance
 
-I know, it's build on electron. You're probably thinking _"Yet another RAM eating small app"_. **NO!** Even though it is an electron app, there's no browser running, so the RAM usage is really small:
+I know, it's built on electron. You're probably thinking _"Yet another RAM eating app"_. **NO!** Even though it is an electron app, there's no browser running, so the RAM usage is really small:
 
 ![ram](https://github.com/pablopunk/art/raw/master/serve-bar/ram.png)
 
-It is also really **fast**. You can easily drag like 50 items into the topbar and they will be instantly shared (and without consuming a lot of RAM). Obviously you will have 50 tabs open in your browser so be careful trying this!
+It is also really **fast**. You can easily drag like 50 items into the topbar and they will be instantly shared (and without consuming a lot of RAM). Obviously you will have 50 tabs open in your browser so be careful trying this! And when I say 50, I could say 200, I just didn't try that many.
 
 ## Build
 
