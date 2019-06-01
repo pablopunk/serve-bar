@@ -19,7 +19,7 @@
   "devDependencies": {
     "electron": "^5.0.2",
     "electron-builder": "^20.41.0",
-    "husky": "*",
+    "husky": "^2.3.0",
     "png2icns": "0.0.1",
     "prettier": "*",
     "pretty-quick": "*",
@@ -65,7 +65,10 @@
   },
   "build": {
     "appId": "com.pablopunk.serve-bar",
-    "files": ["**/*", "assets/*.png"],
+    "files": [
+      "**/*",
+      "assets/*.png"
+    ],
     "directories": {
       "buildResources": "assets"
     },
