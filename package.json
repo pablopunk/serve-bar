@@ -19,8 +19,10 @@
     "electron": "^5.0.2",
     "electron-builder": "^20.41.0",
     "husky": "*",
+    "png2icns": "0.0.1",
     "prettier": "*",
-    "pretty-quick": "*"
+    "pretty-quick": "*",
+    "svgpng": "^4.0.1"
   },
   "homepage": "https://github.com/pablopunk/serve-bar",
   "keywords": [
@@ -56,7 +58,9 @@
   },
   "scripts": {
     "start": "electron .",
-    "dist": "build"
+    "dist": "npm run png2icns && build",
+    "svg-to-png": "svgpng build/icon.svg dist/icon.png -w 512 -h 512",
+    "png2icns": "npm run svg-to-png && png2icns dist/icon.png -s 16,32,63,128,256 -o build/icon.icns"
   },
   "build": {
     "appId": "com.pablopunk.serve-bar",

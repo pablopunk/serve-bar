@@ -15,9 +15,17 @@ Download the latest release from [here](https://github.com/pablopunk/serve-bar/r
 
 ## Build
 
-```js
+If you just wanna change the code and run the app:
+
+```bash
 npm install
 npm start
+```
+
+If you want to make the production build:
+
+```bash
+npm run dist
 ```
 
 ## Contribute
