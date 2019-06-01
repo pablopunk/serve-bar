@@ -1,32 +1,11 @@
-const { promises: fs } = require('fs')
-const os = require('os')
 const path = require('path')
-const http = require('http')
 const {app, clipboard, shell, Menu, Tray} = require('electron')
-const handler = require('serve-handler')
 const notifier = require('node-notifier')
-const portfinder = require('portfinder')
+const {createServer} = require('./server')
 
 const iconPath = path.join(__dirname, '..', 'assets/iconTemplate.png')
 
 let serversSubMenu = []
-
-const getNetworkIp = () => {
-  const ifaces = os.networkInterfaces()
-  let ip = 'localhost'
-
-  for (let i in ifaces) {
-    const externalIpv4s = ifaces[i].filter(_ => !_.internal && _.family === 'IPv4')
-    if (externalIpv4s.length > 0) {
-      ip = externalIpv4s[0].address
-      break
-    }
-  }
-
-  return ip
-}
-
-const IP = getNetworkIp()
 
 const getLabelForServer = (pathname, port) =>
   `Stop sharing ${pathname} at port ${port}`
@@ -58,11 +37,11 @@ const getMenu = serversSubMenu => Menu.buildFromTemplate([
   }
 ])
 
-const serverExists = pathname => Boolean(
+const serverExistsInMenu = pathname => Boolean(
   serversSubMenu.find((menu) => menu.pathname === pathname))
 
 const removeServerFromMenu = pathname => {
-  if (serverExists(pathname)) {
+  if (serverExistsInMenu(pathname)) {
     const index = serversSubMenu.indexOf(pathname)
     serversSubMenu.splice(index, 1)
     reloadMenu()
@@ -92,41 +71,21 @@ const notifyServerAlreadyExists = pathname => {
   })
 }
 
-const isDirectory = async pathname => (await fs.lstat(pathname)).isDirectory()
 
-const newServerEvent = async pathname => {
-  if (serverExists(pathname)) {
+const newServerEvent = pathname => {
+  if (serverExistsInMenu(pathname)) {
     notifyServerAlreadyExists(pathname)
     return
   }
 
-  let server
-
-  if (await isDirectory(pathname)) {
-    server = http.createServer((req, res) => handler(req, res, {
-      public: pathname
-    }))
-  } else {
-    const fileName = path.basename(pathname)
-    server = http.createServer((req, res) => handler(req, res, {
-      public: path.dirname(pathname),
-      rewrites: [
-        { source: '*', destination: `/${fileName}` }
-      ]
-    }))
-  }
-
-  const openPort = await portfinder.getPortPromise()
-
-  server.listen(openPort, () => {
-    const sharedUrl = `http://${IP}:${openPort}/`
+  createServer(pathname, (server, ip, port) => {
+    const sharedUrl = `http://${ip}:${port}/`
     clipboard.writeText(sharedUrl)
     shell.openExternal(sharedUrl)
+    addServerToMenu(server, pathname, port)
+    notifyServerSuccess(pathname)
+    reloadMenu()
   })
-
-  addServerToMenu(server, pathname, openPort)
-  notifyServerSuccess(pathname)
-  reloadMenu()
 }
 
 app.on('ready', _ => {
