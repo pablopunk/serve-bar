@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/pablopunk/art/raw/master/serve-bar/icon.png" />
+  <img width="128px" src="https://github.com/pablopunk/art/raw/master/serve-bar/icon.png" />
 </p>
 <h2 align="center">serve-bar</h2>
 <p align="center">
