@@ -8,54 +8,59 @@ const iconPath = path.join(__dirname, '..', 'assets/iconTemplate.png')
 
 let serversSubMenu = []
 
+const stripHomeFolder = pathname => pathname.replace(/\/Users\/[^\/]+/, '~')
+
 const getLabelForServer = (pathname, port) =>
-  `Stop sharing ${pathname} at port ${port}`
+  `Stop sharing ${stripHomeFolder(pathname)} at port ${port}`
 
 const getMenuItemForServer = (server, pathname, port) => ({
   pathname,
   label: getLabelForServer(pathname, port),
   type: 'normal',
-  click () {
+  click() {
     server.close()
     removeServerFromMenu(pathname)
   }
 })
 
-const getMenu = serversSubMenu => Menu.buildFromTemplate([
-  {
-    label: 'Servers',
-    submenu: serversSubMenu
-  },
-  {
-    label: 'Open in browser',
-    type: 'checkbox',
-    checked: settings.get('openInBrowser'),
-    click () {
-      settings.set('openInBrowser', !settings.get('openInBrowser'))
+const getMenu = serversSubMenu =>
+  Menu.buildFromTemplate([
+    {
+      label: 'Servers',
+      submenu: serversSubMenu
+    },
+    {
+      label: 'Open in browser',
+      type: 'checkbox',
+      checked: settings.get('openInBrowser'),
+      click() {
+        settings.set('openInBrowser', !settings.get('openInBrowser'))
+      }
+    },
+    {
+      label: 'Copy to clipboard',
+      type: 'checkbox',
+      checked: settings.get('copyToClipboard'),
+      click() {
+        settings.set('copyToClipboard', !settings.get('copyToClipboard'))
+      }
+    },
+    {
+      label: 'View on Github',
+      type: 'normal',
+      click() {
+        shell.openExternal('https://github.com/pablopunk/serve-bar')
+      }
+    },
+    {
+      label: 'Quit',
+      type: 'normal',
+      role: 'quit'
     }
-  },
-  {
-    label: 'Copy to clipboard',
-    type: 'checkbox',
-    checked: settings.get('copyToClipboard'),
-    click () {
-      settings.set('copyToClipboard', !settings.get('copyToClipboard'))
-    }
-  },
-  {
-    label: 'View on Github',
-    type: 'normal',
-    click () { shell.openExternal('https://github.com/pablopunk/serve-bar') }
-  },
-  {
-    label: 'Quit',
-    type: 'normal',
-    role: 'quit'
-  }
-])
+  ])
 
-const serverExistsInMenu = pathname => Boolean(
-  serversSubMenu.find((menu) => menu.pathname === pathname))
+const serverExistsInMenu = pathname =>
+  Boolean(serversSubMenu.find(menu => menu.pathname === pathname))
 
 const removeServerFromMenu = pathname => {
   if (serverExistsInMenu(pathname)) {
@@ -117,6 +122,6 @@ app.on('ready', _ => {
   reloadMenu()
   tray.setToolTip(`Open ${app.getName()}`)
   tray.on('drop-files', (_, files) => {
-    files.forEach(file => newServerEvent(file))
+    files.forEach(newServerEvent)
   })
 })
