@@ -3,12 +3,7 @@
 </p>
 <h2 align="center">Serve Bar</h2>
 <p align="center">
-	<a href="https://github.com/pablopunk/serve-bar#download"><img src="https://img.shields.io/github/downloads/pablopunk/serve-bar/total.svg" alt="Downloads" /></a>
-</p>
-<p align="center">
-  <i>Drag & Drop to share files/folders in your network</i>
-</p>
-<p align="center">
+  <i align="center">Drag & Drop to share files/folders in your network</i>
   <img src="https://github.com/pablopunk/art/raw/master/serve-bar/screen.gif" />
 </p>
 
