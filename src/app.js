@@ -8,7 +8,7 @@ const iconPath = path.join(__dirname, '..', 'assets/iconTemplate.png')
 
 let serversSubMenu = []
 
-const stripHomeFolder = pathname => pathname.replace(/\/Users\/[^\/]+/, '~')
+const stripHomeFolder = pathname => pathname.replace(/\/Users\/[^/]+/, '~')
 
 const getLabelForServer = (pathname, port) =>
   `Stop sharing ${stripHomeFolder(pathname)} at port ${port}`
