@@ -17,7 +17,7 @@
     "serve-handler": "^6.0.1"
   },
   "devDependencies": {
-    "electron": "^5.0.2",
+    "electron": "^7.2.4",
     "electron-builder": "^20.41.0",
     "husky": "^2.3.0",
     "png2icns": "0.0.1",
